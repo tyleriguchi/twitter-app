@@ -15,17 +15,32 @@ app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 
 app.get("/", function(req, res) {
-	var name = req.query.
 	res.render('index.html');
 });
 
-var result = [];
-twit.get('statuses/home_timeline', {screen_name: 'tyleriguchi', count: 10}, function(err, reply) {
-	for (var i = 0; i < reply.length; i++ ) {
-		result.push(reply[i]["text"]);
-	}
-	console.log(result);
-});
+app.post('/', function(req, res) {
+	var body = req.body.screen_name;
+	res.send(body);
+})
+// var result = [];
+// twit.get('statuses/home_timeline', {screen_name: 'tyleriguchi', count: 10}, function(err, reply) {
+// 	for (var i = 0; i < reply.length; i++ ) {
+// 		result.push(reply[i]["text"]);
+// 	}
+// 	console.log(result);
+// });
 
+
+// function twitter() {
+// 	var result = [];
+
+// 	twit.get('statuses/home_timeline', {screen_name: 'tyleriguchi', count: 10}, function(err, reply) {
+// 		for (var i = 0; i < reply.length; i++ ) {
+// 			result.push(reply[i]["text"]);
+// 		}
+// 	});
+// }
+
+console.log(twitter());
 app.listen(3000);
 console.log("Server started");
