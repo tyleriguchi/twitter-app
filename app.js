@@ -1,5 +1,6 @@
 var express = require('express'),
 	Twit = require('twit'),
+	ejs = require('ejs'),
 	app = express();
 
 var twit = new Twit({
@@ -13,10 +14,14 @@ app.use('static', express.static(__dirname + '/static'));
 app.use(express.bodyParser());
 
 app.set('views', __dirname + '/views');
-app.engine('html', require('ejs').renderFile);
+app.set('view options', {layout:false, root: __dirname + '/views'});
+app.set('view engine', 'ejs');
+
+// app.engine('html', require('').renderFile);
 
 app.get("/", function(req, res) {
-	res.render('index.html');
+	// empty string hack
+	res.render('index.ejs', {result: ""});
 });
 
 app.post('/', function(req, res) {
@@ -26,21 +31,9 @@ app.post('/', function(req, res) {
 		for (var i = 0; i < reply.length; i++ ) {
 			result.push(reply[i]["text"]);
 		}
-		res.send(result);
+		res.render('index.ejs', {result: result});
 	});
 })
-
-
-
-// function twitter() {
-// 	var result = [];
-
-// 	twit.get('statuses/home_timeline', {screen_name: 'tyleriguchi', count: 10}, function(err, reply) {
-// 		for (var i = 0; i < reply.length; i++ ) {
-// 			result.push(reply[i]["text"]);
-// 		}
-// 	});
-// }
 
 app.listen(3000);
 console.log("Server started");

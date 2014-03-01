@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "express": "~3.4.8",
-    "twit": "~1.1.12"
+    "twit": "~1.1.12",
+    "ejs": "~0.8.5"
   }
 }
