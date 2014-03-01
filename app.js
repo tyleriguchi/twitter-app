@@ -28,15 +28,20 @@ app.post('/', function(req, res) {
 	var name = req.body.name;
 	var result = [];
 	var post = {};
-	twit.get('statuses/home_timeline', {screen_name: 'tyleriguchi', count: 10}, function(err, reply) {
-		for (var i = 0; i < reply.length; i++ ) {
-			var post = {};
-			post.text = reply[i].text;
-			post.user = reply[i].user.name;
-			post.created = reply[i].created_at;
-			result.push(post);
+	twit.get('statuses/user_timeline', {screen_name: name, count: 10}, function(err, reply) {
+		if (!err) {
+			for (var i = 0; i < reply.length; i++ ) {
+				var post = {};
+				post.text = reply[i].text;
+				post.user = reply[i].user.name;
+				post.created = reply[i].created_at;
+				result.push(post);
+			}
+			res.render('index.ejs', {result: result});
 		}
-		res.render('index.ejs', {result: result});
+		else {
+			res.send('error');
+		}
 	});
 })
 

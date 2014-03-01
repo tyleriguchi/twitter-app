@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Twitter app</title>
+</head>
+<body>
+	<h1>TWITTER SEARCH YOU TWEET</h1>
+	<div id='main-content'>
+	<form action="" method='post'>
+		<input type='text' name='name'>
+		<input type='submit' value="Search">
+	</form>
+	</div>
+
+		<% for (var i = 0; i < result.length; i++) { %>
+		<div class='result-body'>
+			<%= result[i].user %>:
+			<br> 
+			<%= result[i].text %>
+			<br>
+			<%= result[i].created %>
+		</div>
+		<br>
+		<% } %>
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<!--<script src="../static/js/twit.js"></script> -->
+</body>
+</html>
