@@ -27,9 +27,14 @@ app.get("/", function(req, res) {
 app.post('/', function(req, res) {
 	var name = req.body.name;
 	var result = [];
+	var post = {};
 	twit.get('statuses/home_timeline', {screen_name: 'tyleriguchi', count: 10}, function(err, reply) {
 		for (var i = 0; i < reply.length; i++ ) {
-			result.push(reply[i]["text"]);
+			var post = {};
+			post.text = reply[i].text;
+			post.user = reply[i].user.name;
+			post.created = reply[i].created_at;
+			result.push(post);
 		}
 		res.render('index.ejs', {result: result});
 	});
