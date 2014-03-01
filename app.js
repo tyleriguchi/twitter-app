@@ -10,6 +10,7 @@ var twit = new Twit({
 });
 
 app.use('static', express.static(__dirname + '/static'));
+app.use(express.bodyParser());
 
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
@@ -19,16 +20,16 @@ app.get("/", function(req, res) {
 });
 
 app.post('/', function(req, res) {
-	var body = req.body.screen_name;
-	res.send(body);
+	var name = req.body.name;
+	var result = [];
+	twit.get('statuses/home_timeline', {screen_name: 'tyleriguchi', count: 10}, function(err, reply) {
+		for (var i = 0; i < reply.length; i++ ) {
+			result.push(reply[i]["text"]);
+		}
+		res.send(result);
+	});
 })
-// var result = [];
-// twit.get('statuses/home_timeline', {screen_name: 'tyleriguchi', count: 10}, function(err, reply) {
-// 	for (var i = 0; i < reply.length; i++ ) {
-// 		result.push(reply[i]["text"]);
-// 	}
-// 	console.log(result);
-// });
+
 
 
 // function twitter() {
@@ -41,6 +42,5 @@ app.post('/', function(req, res) {
 // 	});
 // }
 
-console.log(twitter());
 app.listen(3000);
 console.log("Server started");
