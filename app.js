@@ -10,6 +10,7 @@ var twit = new Twit({
 	access_token_secret: "y6ejrqTGQdEpOSbTvj1MhIenu84Ns9VjmLrc6pythgp8T"
 });
 
+// Middleware
 app.use('static', express.static(__dirname + '/static'));
 app.use(express.bodyParser());
 
@@ -17,11 +18,8 @@ app.set('views', __dirname + '/views');
 app.set('view options', {layout:false, root: __dirname + '/views'});
 app.set('view engine', 'ejs');
 
-// app.engine('html', require('').renderFile);
-
 app.get("/", function(req, res) {
-	// empty string hack
-	res.render('index.ejs', {result: ""});
+	res.render('index.ejs', {result: {}});
 });
 
 app.post('/', function(req, res) {
