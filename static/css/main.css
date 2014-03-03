@@ -1,14 +1,18 @@
 body, html {
-	margin: auto;
+	margin: 0;
 	padding: 0;
 	position: absolute;
+	width: 100%;
 }
 
+.main-content {
+	
+}
 .result-body {
-	width: 50%;
+	width: 80%;
 	overflow: auto;
 	margin: auto;
 	position: absolute;
-	padding: 0;
+	padding: auto;
 	background: #343;
 }
