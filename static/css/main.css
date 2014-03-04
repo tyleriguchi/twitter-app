@@ -1,18 +1,31 @@
 body, html {
-	margin: 0;
+	margin: auto;
 	padding: 0;
 	position: absolute;
 	width: 100%;
+	font-family: helvetica, sans-serif, arial;
 }
 
-.main-content {
-	
+h1, h2, h3, h4 {
+	text-align: center;
 }
-.result-body {
-	width: 80%;
-	overflow: auto;
+
+#main-content {
 	margin: auto;
-	position: absolute;
-	padding: auto;
-	background: #343;
+	width: 80%;
+}
+
+.result-body {
+	background: #4099ff;
+	border-radius: 15px;
+	padding: 25px;
+	border: 1px solid #111;
+	color: #FAFAFA;
+}
+
+input[type=submit] {
+	border: 1px solid #111;
+	border-radius: 10%;
+	background: #fff;
+	cursor: pointer;
 }

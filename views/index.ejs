@@ -10,9 +10,11 @@
 	<h1>TWITTER SEARCH YOU TWEET</h1>
 	<form action="" method='post'>
 		<input type='text' name='name'>
-		<input type='submit' value="Search">
+		<br>
+		<input type='submit' value="Search" name="search">
 	</form>
 
+		<br>
 		<% for (var i = 0; i < result.length; i++) { %>
 		<div class='result-body'>
 			<%= result[i].user %>:
